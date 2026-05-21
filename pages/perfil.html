@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi perfil — TalentDrop</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .perfil-page { padding: 100px 2rem 5rem; max-width: 860px; margin: auto; }
+
+  /* Hero card */
+  .perfil-hero-card {
+    border-radius: 24px; overflow: hidden;
+    border: 0.5px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+  }
+  .perfil-banner {
+    height: 140px; background: var(--accent); position: relative; overflow: hidden;
+  }
+  .perfil-banner::before {
+    content: ''; position: absolute; right: -60px; top: -60px;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .perfil-banner::after {
+    content: ''; position: absolute; left: 40%; bottom: -80px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(232,98,58,0.15);
+  }
+  .perfil-body { background: var(--surface); padding: 0 2rem 2rem; }
+  .perfil-avatar-wrap { display: flex; align-items: flex-end; justify-content: space-between; margin-top: -52px; margin-bottom: 1.25rem; }
+  .perfil-avatar {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: var(--accent2); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem;
+    border: 4px solid var(--surface); position: relative; z-index: 1;
+  }
+  .perfil-name { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 4px; }
+  .perfil-area { font-size: 1rem; color: var(--ink2); margin-bottom: 0.75rem; }
+  .perfil-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .perfil-meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--ink3); }
+  .perfil-meta-item svg { width: 14px; height: 14px; stroke: var(--ink3); flex-shrink: 0; }
+  .perfil-meta-item a { color: var(--accent2); text-decoration: none; }
+  .perfil-meta-item a:hover { text-decoration: underline; }
+
+  /* Score pill on top right */
+  .score-pill {
+    background: rgba(42,32,86,0.08); border-radius: 16px; padding: 0.75rem 1.25rem;
+    text-align: center; border: 0.5px solid rgba(42,32,86,0.15);
+  }
+  .score-pill-num { font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  .score-pill-label { font-size: 0.68rem; color: var(--ink3); margin-top: 2px; }
+
+  /* Sections */
+  .perfil-section { background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px; padding: 1.75rem; margin-bottom: 1.25rem; }
+  .perfil-section h4 {
+    font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 600;
+    margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px;
+  }
+  .perfil-section h4 svg { width: 18px; height: 18px; stroke: var(--accent); }
+
+  /* Skills */
+  .skill-row-p { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .skill-row-p span:first-child { font-size: 0.82rem; color: var(--ink2); min-width: 120px; }
+  .skill-track-p { flex: 1; height: 6px; background: var(--border2); border-radius: 100px; overflow: hidden; }
+  .skill-fill-p { height: 100%; border-radius: 100px; width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+  .sfp-blue   { background: var(--accent); }
+  .sfp-green  { background: var(--accent3); }
+  .sfp-orange { background: var(--accent2); }
+  .skill-pct-p { font-size: 0.75rem; font-weight: 600; min-width: 30px; text-align: right; }
+
+  /* Resumen */
+  #perfilResumen { font-size: 0.95rem; color: var(--ink2); line-height: 1.75; }
+
+  /* ADN visual */
+  .dna-helix-p { display: flex; gap: 5px; align-items: flex-end; height: 70px; margin-top: 0.75rem; }
+  .dna-col-p { flex: 1; border-radius: 4px 4px 0 0; }
+
+  /* Btn row */
+  .btn-row-p { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 600px) {
+    .perfil-meta { gap: 0.75rem; }
+    .perfil-avatar-wrap { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+</style>
+<script src="../js/auth.js"></script>
+</head>
+<body>
+
+<nav></nav>
+
+<div class="perfil-page">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:10px;">
+    <div class="section-tag">✦ Tu perfil profesional</div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn-secondary" style="font-size:0.82rem;padding:0.55rem 1.1rem;" onclick="shareProfile()">Compartir</button>
+      <button class="btn-primary"   style="font-size:0.82rem;padding:0.55rem 1.1rem;" onclick="window.location.href='upload.html'">Actualizar CV</button>
+    </div>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="perfil-hero-card animate">
+    <div class="perfil-banner"></div>
+    <div class="perfil-body">
+      <div class="perfil-avatar-wrap">
+        <div class="perfil-avatar" id="pAvatar">TD</div>
+        <div class="score-pill">
+          <div class="score-pill-num" id="pScore">—</div>
+          <div class="score-pill-label">Score IA</div>
+        </div>
+      </div>
+      <div class="perfil-name" id="pNombre">Cargando…</div>
+      <div class="perfil-area" id="pArea"></div>
+      <div class="perfil-meta" id="pMeta"></div>
+    </div>
+  </div>
+
+  <!-- RESUMEN -->
+  <div class="perfil-section animate delay-1">
+    <h4>
+      <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+      Resumen profesional
+    </h4>
+    <p id="perfilResumen" style="color:var(--ink3);font-size:0.9rem;line-height:1.75;">—</p>
+  </div>
+
+  <!-- HABILIDADES -->
+  <div class="perfil-section animate delay-2">
+    <h4>
+      <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      Habilidades detectadas
+    </h4>
+    <div id="perfilSkills"></div>
+  </div>
+
+  <!-- ADN VISUAL -->
+  <div class="perfil-section animate delay-2">
+    <h4>
+      <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3"/></svg>
+      Tu ADN visual
+    </h4>
+    <p style="font-size:0.8rem;color:var(--ink3);margin-bottom:0.25rem;">Representación única de tu perfil generada por IA</p>
+    <div class="dna-helix-p" id="perfilDNA"></div>
+  </div>
+
+  <!-- ACCIONES -->
+  <div class="btn-row-p animate delay-3">
+    <button class="btn-primary" onclick="downloadProfile()">Descargar resumen TXT</button>
+    <button class="btn-secondary" onclick="window.location.href='dashboard.html'">Ver dashboard</button>
+    <button class="btn-secondary" onclick="window.location.href='upload.html'">← Editar datos</button>
+  </div>
+
+</div>
+
+<footer style="background:var(--accent);padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+  <div>
+    <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;display:flex;align-items:center;gap:8px;"><div class="logo-dot"></div>TalentDrop</div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:3px;">© 2025 TalentDrop · Proyecto escolar</div>
+  </div>
+  <div style="display:flex;gap:1.25rem;">
+    <a href="#" style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none;">Privacidad</a>
+    <a href="#" style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none;">Términos</a>
+  </div>
+</footer>
+
+<script>
+// Auth
+if(typeof requireAuth!=="undefined"){ if(!requireAuth()) throw new Error("auth"); }
+if(typeof buildNav!=="undefined") buildNav("perfil");
+
+// ── Leer datos ──
+let profile = {};
+try { profile = JSON.parse(localStorage.getItem('td_profile') || '{}'); } catch(e) {}
+
+const nombre  = profile.nombre  || localStorage.getItem('nombre')  || 'Sin nombre';
+const area    = profile.area    || localStorage.getItem('area')     || '—';
+const email   = profile.email   || localStorage.getItem('correo')  || '';
+const tel     = profile.tel     || localStorage.getItem('telefono') || '';
+const ciudad  = profile.ciudad  || localStorage.getItem('ciudad')   || '';
+const linkedin= profile.linkedin|| localStorage.getItem('linkedin') || '';
+const resumen = profile.resumen || localStorage.getItem('resumen')  || 'Sin resumen profesional.';
+const expYears= parseInt(profile.exp || localStorage.getItem('exp') || '2');
+const skills  = profile.skills  || [];
+const fecha   = profile.fecha   || new Date().toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'});
+
+const SKILL_BANKS = {
+  diseño:      [{ n:'Figma', p:92 }, { n:'UX Research', p:85 }, { n:'Prototipado', p:88 }, { n:'CSS/HTML', p:72 }, { n:'Design Systems', p:80 }],
+  tecnología:  [{ n:'JavaScript', p:88 }, { n:'React', p:82 }, { n:'Node.js', p:78 }, { n:'Python', p:75 }, { n:'Git', p:90 }],
+  default:     [{ n:'Comunicación', p:82 }, { n:'Gestión', p:78 }, { n:'Creatividad', p:85 }, { n:'Análisis', p:75 }, { n:'Trabajo en equipo', p:88 }],
+};
+function detectKey(a) {
+  const l = a.toLowerCase();
+  if (l.includes('dise')||l.includes('ux'))  return 'diseño';
+  if (l.includes('tec')||l.includes('dev'))   return 'tecnología';
+  return 'default';
+}
+const skillSet = skills.length >= 3
+  ? skills.map(s => ({ n:s, p: Math.round(65+Math.random()*30) }))
+  : SKILL_BANKS[detectKey(area)] || SKILL_BANKS.default;
+
+const baseScore = Math.min(60 + skillSet.length*4 + expYears*3, 99);
+const initials  = nombre.split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase() || 'TD';
+
+// Render
+document.getElementById('pAvatar').textContent = initials;
+document.getElementById('pScore').textContent  = baseScore;
+document.getElementById('pNombre').textContent = nombre;
+document.getElementById('pArea').textContent   = area + (expYears ? ` · ${expYears} años de experiencia` : '');
+
+// Meta
+const meta = document.getElementById('pMeta');
+const metaItems = [
+  { icon:'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418', val: ciudad },
+  { icon:'M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75', val: email },
+  { icon:'M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z', val: tel },
+];
+metaItems.forEach(item => {
+  if (!item.val) return;
+  meta.innerHTML += `
+    <span class="perfil-meta-item">
+      <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="${item.icon}"/></svg>
+      ${item.val}
+    </span>`;
+});
+if (linkedin) {
+  meta.innerHTML += `
+    <span class="perfil-meta-item">
+      <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+      <a href="${linkedin.startsWith('http')?linkedin:'https://'+linkedin}" target="_blank">${linkedin}</a>
+    </span>`;
+}
+
+document.getElementById('perfilResumen').textContent = resumen || 'Sin resumen profesional registrado.';
+
+// Skill bars
+const skillsWrap = document.getElementById('perfilSkills');
+const colors = ['sfp-blue','sfp-green','sfp-orange','sfp-blue','sfp-green'];
+skillSet.slice(0,5).forEach((s,i) => {
+  skillsWrap.innerHTML += `
+    <div class="skill-row-p">
+      <span>${s.n}</span>
+      <div class="skill-track-p"><div class="skill-fill-p ${colors[i]}" data-pct="${s.p}"></div></div>
+      <span class="skill-pct-p">${s.p}%</span>
+    </div>`;
+});
+setTimeout(() => {
+  document.querySelectorAll('.skill-fill-p').forEach(el => { el.style.width = el.dataset.pct+'%'; });
+}, 400);
+
+// DNA Helix
+const dna = document.getElementById('perfilDNA');
+const dnaCols = [
+  {h:'62%',c:'var(--accent)',o:'0.9'},{h:'82%',c:'var(--accent2)',o:'0.85'},{h:'50%',c:'var(--accent)',o:'0.55'},
+  {h:'96%',c:'var(--accent3)',o:'0.9'},{h:'70%',c:'var(--accent2)',o:'0.7'},{h:'85%',c:'var(--accent)',o:'0.8'},
+  {h:'44%',c:'var(--accent3)',o:'0.6'},{h:'75%',c:'var(--accent2)',o:'0.85'},{h:'91%',c:'var(--accent)',o:'0.9'},
+  {h:'55%',c:'var(--accent3)',o:'0.7'},{h:'65%',c:'var(--accent2)',o:'0.6'},{h:'100%',c:'var(--accent)',o:'0.95'},
+];
+dnaCols.forEach(({h,c,o}) => {
+  dna.innerHTML += `<div class="dna-col-p" style="height:${h};background:${c};opacity:${o};border-radius:4px 4px 0 0;"></div>`;
+});
+
+// Actions
+function shareProfile() {
+  const url = window.location.href;
+  navigator.clipboard ? navigator.clipboard.writeText(url).then(()=>alert('¡Enlace copiado!')) : prompt('Copia:', url);
+}
+function downloadProfile() {
+  const content = `TalentDrop — Perfil Profesional\n${'='.repeat(40)}\nNombre:     ${nombre}\nÁrea:       ${area}\nCiudad:     ${ciudad||'—'}\nEmail:      ${email}\nTeléfono:   ${tel||'—'}\nLinkedIn:   ${linkedin||'—'}\n\nScore IA:   ${baseScore}/100\nHabilidades: ${skillSet.map(s=>s.n).join(', ')}\n\nResumen:\n${resumen}\n\nGenerado el ${fecha} · TalentDrop`;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([content],{type:'text/plain;charset=utf-8'}));
+  a.download = 'TalentDrop_Perfil.txt'; a.click();
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subir CV — TalentDrop</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+  .upload-page { min-height: 100vh; padding: 100px 2rem 4rem; display: flex; align-items: center; justify-content: center; }
+  .upload-steps {
+    display: flex; gap: 0; margin-bottom: 3rem;
+    border: 0.5px solid var(--border); border-radius: 100px; overflow: hidden;
+    width: fit-content;
+  }
+  .step {
+    padding: 0.5rem 1.5rem; font-size: 0.8rem; font-weight: 500; color: var(--ink3);
+    display: flex; align-items: center; gap: 8px; background: var(--surface);
+  }
+  .step.active { background: var(--accent); color: #fff; }
+  .step-num {
+    width: 20px; height: 20px; border-radius: 50%; background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700;
+  }
+  .big-upload {
+    border: 2px dashed rgba(42,32,86,0.15); border-radius: 24px;
+    padding: 4rem 3rem; text-align: center; cursor: pointer;
+    transition: all 0.2s; background: var(--surface); margin-bottom: 2rem;
+  }
+  .big-upload:hover { border-color: var(--accent); background: rgba(42,32,86,0.02); }
+  .big-upload-icon {
+    width: 72px; height: 72px; border-radius: 20px; background: rgba(42,32,86,0.07);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;
+  }
+  .big-upload-icon svg { width: 32px; height: 32px; stroke: var(--accent); }
+</style>
+<script src="../js/auth.js"></script>
+</head>
+
+<body>
+
+<nav></nav>
+
+<div class="upload-page">
+  <div style="width:100%;max-width:700px;">
+
+    <!-- STEPPER ORIGINAL PERO FUNCIONAL -->
+    <div class="upload-steps">
+      <div class="step active"><div class="step-num">1</div> Sube tu CV</div>
+      <div class="step"><div class="step-num">2</div> Tus datos</div>
+      <div class="step"><div class="step-num">3</div> Tu perfil</div>
+    </div>
+
+    <div class="page-title animate">Sube tu CV</div>
+    <p class="page-sub animate delay-1">Acepta PDF, Word o TXT. Lo analizamos en segundos con IA.</p>
+
+    <!-- BLOQUE DE SUBIR CV -->
+    <div class="big-upload animate delay-2" id="uploadZone" onclick="document.getElementById('cvFile').click()">
+      <div class="big-upload-icon">
+        <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+        </svg>
+      </div>
+      <h3>Arrastra tu archivo aquí</h3>
+      <p>o haz clic para explorar tus archivos</p>
+
+      <div class="file-types" style="justify-content:center;">
+        <span class="file-type">PDF</span>
+        <span class="file-type">DOCX</span>
+        <span class="file-type">TXT</span>
+        <span class="file-type">DOC</span>
+      </div>
+    </div>
+
+    <input type="file" id="cvFile" class="upload-input" accept=".pdf,.doc,.docx,.txt">
+
+    <!-- BOTÓN PARA CONTINUAR A PASO 2 -->
+    <div style="display:flex;justify-content:flex-end;margin-top:1.5rem;">
+      <button class="submit-btn" style="width:auto;padding:0.85rem 2rem;" id="goDatos">
+        Continuar
+        <svg fill="none" stroke-width="2" stroke="currentColor" width="16" height="16" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.getElementById('goDatos').addEventListener('click', () => {
+    window.location.href = 'datos.html';
+});
+</script>
+
+</body>
+</html>

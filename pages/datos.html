@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tus datos — TalentDrop</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/stepper.css">
+<style>
+  .data-page { min-height:100vh; padding:100px 2rem 5rem; display:flex; justify-content:center; align-items:flex-start; }
+  .upload-steps { display:flex; gap:0; margin-bottom:2.5rem; border:0.5px solid var(--border); border-radius:100px; overflow:hidden; width:fit-content; }
+  .step { padding:0.55rem 1.5rem; font-size:0.8rem; font-weight:500; color:var(--ink3); display:flex; align-items:center; gap:8px; background:var(--surface); }
+  .step.active { background:var(--accent); color:#fff; }
+  .step.done   { color:var(--accent3); background:rgba(76,175,125,0.07); }
+  .step-num { width:20px; height:20px; border-radius:50%; background:rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; font-size:0.68rem; font-weight:700; }
+  .step.active .step-num { background:rgba(255,255,255,0.2); }
+  .step.done   .step-num { background:rgba(76,175,125,0.15); color:var(--accent3); }
+  .card-section { background:var(--surface); border:0.5px solid var(--border); border-radius:20px; padding:2rem; margin-bottom:1.25rem; }
+  .card-section h4 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:600; margin-bottom:1.25rem; }
+  .full-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  .form-input.error { border-color:#E24B4A; }
+  .field-error { font-size:0.72rem; color:#E24B4A; margin-top:3px; display:none; }
+  .field-error.visible { display:block; }
+  .skill-chips-wrap { display:flex; flex-wrap:wrap; gap:8px; margin-top:0.75rem; min-height:36px; }
+  .skill-chip { background:rgba(42,32,86,0.07); border:0.5px solid rgba(42,32,86,0.15); border-radius:100px; padding:4px 12px 4px 10px; font-size:0.78rem; font-weight:500; color:var(--accent); display:flex; align-items:center; gap:6px; }
+  .skill-chip button { background:none; border:none; cursor:pointer; color:var(--ink3); font-size:1rem; line-height:1; }
+  .skill-chip button:hover { color:#E24B4A; }
+  .skill-add-row { display:flex; gap:8px; margin-top:10px; }
+  .skill-add-row input { flex:1; }
+  .skill-add-row button { padding:0.65rem 1rem; background:var(--accent); color:#fff; border:none; border-radius:var(--radius-sm); font-family:'DM Sans',sans-serif; font-size:0.85rem; cursor:pointer; }
+  @media(max-width:600px){ .full-grid{grid-template-columns:1fr;} }
+</style>
+<script src="../js/auth.js"></script>
+</head>
+<body>
+
+<nav></nav>
+
+<div class="data-page">
+<div style="width:100%;max-width:700px;">
+
+  <div class="upload-steps">
+    <div class="step done"><div class="step-num">✓</div> Sube tu CV</div>
+    <div class="step active"><div class="step-num">2</div> Tus datos</div>
+    <div class="step"><div class="step-num">3</div> Tu perfil</div>
+  </div>
+
+  <div class="page-title animate">Tus datos</div>
+  <p class="page-sub animate delay-1" style="margin-bottom:1.75rem;">Completa tu información para generar tu ADN profesional.</p>
+
+  <div class="card-section animate delay-2">
+    <h4>Información personal</h4>
+    <div class="full-grid">
+      <div class="form-group">
+        <label class="form-label">Nombre completo *</label>
+        <input type="text" id="nombre" class="form-input" placeholder="Ana García López">
+        <div class="field-error" id="errNombre">Campo requerido</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Área profesional *</label>
+        <input type="text" id="area" class="form-input" placeholder="Diseño / Tecnología…">
+        <div class="field-error" id="errArea">Campo requerido</div>
+      </div>
+    </div>
+    <div class="full-grid">
+      <div class="form-group">
+        <label class="form-label">Correo electrónico *</label>
+        <input type="email" id="correo" class="form-input" placeholder="ana@correo.com">
+        <div class="field-error" id="errCorreo">Ingresa un correo válido</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Teléfono</label>
+        <input type="tel" id="telefono" class="form-input" placeholder="+52 55 0000 0000">
+      </div>
+    </div>
+    <div class="full-grid">
+      <div class="form-group">
+        <label class="form-label">Ciudad</label>
+        <input type="text" id="ciudad" class="form-input" placeholder="Ciudad de México">
+      </div>
+      <div class="form-group">
+        <label class="form-label">LinkedIn</label>
+        <input type="text" id="linkedin" class="form-input" placeholder="linkedin.com/in/tu-perfil">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Resumen profesional *</label>
+      <textarea id="resumen" class="form-input" rows="3" style="resize:vertical;" placeholder="Describe tu experiencia y lo que buscas…"></textarea>
+      <div class="field-error" id="errResumen">Campo requerido (mínimo 10 caracteres)</div>
+    </div>
+  </div>
+
+  <div class="card-section animate delay-3">
+    <h4>Habilidades destacadas</h4>
+    <p style="font-size:0.82rem;color:var(--ink3);margin-bottom:0.5rem;">Agrega al menos 3 habilidades clave</p>
+    <div class="skill-chips-wrap" id="skillsWrap"></div>
+    <div class="skill-add-row">
+      <input type="text" class="form-input" id="skillInput" placeholder="Ej: Python, Figma, Excel…" style="margin:0;">
+      <button onclick="addSkill()">+ Agregar</button>
+    </div>
+    <div class="field-error" id="errSkills">Agrega al menos 3 habilidades</div>
+
+    <div class="form-group" style="margin-top:1.25rem;">
+      <label class="form-label">Años de experiencia</label>
+      <select id="exp" class="form-input" style="cursor:pointer;">
+        <option value="0">Sin experiencia (estudiante)</option>
+        <option value="1">Menos de 1 año</option>
+        <option value="2" selected>1–2 años</option>
+        <option value="4">3–5 años</option>
+        <option value="7">6–10 años</option>
+        <option value="11">Más de 10 años</option>
+      </select>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:12px;justify-content:flex-end;">
+    <button class="btn-secondary" onclick="window.location.href='upload.html'">← Atrás</button>
+    <button class="submit-btn" id="guardarBtn" style="width:auto;padding:0.85rem 2rem;">
+      Generar mi ADN →
+      <svg fill="none" stroke-width="2" stroke="currentColor" width="16" height="16" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+    </button>
+  </div>
+
+</div>
+</div>
+
+<script>
+if(typeof buildNav!=="undefined") buildNav("datos");
+let skills = [];
+
+// Prefill
+try {
+  const p = JSON.parse(localStorage.getItem('td_profile')||'{}');
+  if(p.nombre)  document.getElementById('nombre').value   = p.nombre;
+  if(p.area)    document.getElementById('area').value     = p.area;
+  if(p.email)   document.getElementById('correo').value   = p.email;
+  if(p.tel)     document.getElementById('telefono').value = p.tel;
+  if(p.ciudad)  document.getElementById('ciudad').value   = p.ciudad;
+  if(p.linkedin)document.getElementById('linkedin').value = p.linkedin;
+  if(p.resumen) document.getElementById('resumen').value  = p.resumen;
+  if(p.exp)     document.getElementById('exp').value      = p.exp;
+  if(p.skills)  { skills = p.skills; renderSkills(); }
+} catch(e) {}
+
+document.getElementById('skillInput').addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();addSkill();} });
+function addSkill(){
+  const inp = document.getElementById('skillInput');
+  const v = inp.value.trim();
+  if(!v||skills.includes(v)){inp.value='';return;}
+  skills.push(v); renderSkills(); inp.value='';
+}
+function removeSkill(s){ skills=skills.filter(x=>x!==s); renderSkills(); }
+function renderSkills(){
+  document.getElementById('skillsWrap').innerHTML = skills.map(s=>
+    `<span class="skill-chip">${s}<button onclick="removeSkill('${s}')">×</button></span>`
+  ).join('');
+}
+
+document.getElementById('guardarBtn').addEventListener('click', () => {
+  let ok = true;
+  const fields = [
+    ['nombre','errNombre', v=>v.trim().length>1],
+    ['area',  'errArea',   v=>v.trim().length>1],
+    ['correo','errCorreo', v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],
+    ['resumen','errResumen',v=>v.trim().length>9],
+  ];
+  fields.forEach(([id,eid,test])=>{
+    const el=document.getElementById(id), er=document.getElementById(eid);
+    if(!test(el.value)){ el.classList.add('error'); er.classList.add('visible'); ok=false; }
+    else { el.classList.remove('error'); er.classList.remove('visible'); }
+  });
+  const errS = document.getElementById('errSkills');
+  if(skills.length<3){ errS.classList.add('visible'); ok=false; } else errS.classList.remove('visible');
+  if(!ok) return;
+
+  const data = {
+    nombre:   document.getElementById('nombre').value.trim(),
+    area:     document.getElementById('area').value.trim(),
+    email:    document.getElementById('correo').value.trim(),
+    tel:      document.getElementById('telefono').value.trim(),
+    ciudad:   document.getElementById('ciudad').value.trim(),
+    linkedin: document.getElementById('linkedin').value.trim(),
+    resumen:  document.getElementById('resumen').value.trim(),
+    skills,
+    exp:      document.getElementById('exp').value,
+    fecha:    new Date().toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'}),
+  };
+  // Guardar en ambos formatos para compatibilidad
+  localStorage.setItem('td_profile', JSON.stringify(data));
+  localStorage.setItem('nombre',  data.nombre);
+  localStorage.setItem('area',    data.area);
+  localStorage.setItem('correo',  data.email);
+  localStorage.setItem('ciudad',  data.ciudad);
+  localStorage.setItem('resumen', data.resumen);
+  localStorage.setItem('exp',     data.exp);
+  window.location.href = 'perfil.html';
+});
+
+window.addEventListener('scroll', ()=>{
+  const nav = document.querySelector('nav');
+  if(nav) nav.style.boxShadow = window.scrollY>10?'0 2px 20px rgba(0,0,0,0.07)':'none';
+});
+</script>
+</body>
+</html>

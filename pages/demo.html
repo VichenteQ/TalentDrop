@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil Demo — TalentDrop</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .profile-page { padding: 100px 2rem 5rem; max-width: 960px; margin: 0 auto; }
+  .profile-hero {
+    background: var(--accent); border-radius: 24px; padding: 3rem;
+    display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; position: relative; overflow: hidden;
+  }
+  .profile-hero::before {
+    content: ''; position: absolute; right: -60px; top: -60px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: rgba(255,255,255,0.04); pointer-events: none;
+  }
+  .big-avatar {
+    width: 90px; height: 90px; border-radius: 50%; background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; color: #fff; flex-shrink: 0;
+  }
+  .profile-hero-info { flex: 1; }
+  .profile-hero-info h2 { font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .profile-hero-info p { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 1rem; }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .hero-tag-pill {
+    background: rgba(255,255,255,0.12); border-radius: 100px;
+    padding: 4px 12px; font-size: 0.75rem; color: rgba(255,255,255,0.8); font-weight: 500;
+  }
+  .score-badge {
+    background: rgba(255,255,255,0.1); border-radius: 20px; padding: 1.25rem 1.75rem; text-align: center;
+    min-width: 120px; flex-shrink: 0;
+  }
+  .score-num { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1; }
+  .score-label { font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .profile-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px; padding: 1.75rem; }
+  .profile-card h4 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px; }
+  .profile-card h4 svg { width: 18px; height: 18px; stroke: var(--accent); }
+
+  /* Skills chart */
+  .skill-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .skill-row span:first-child { font-size: 0.8rem; color: var(--ink2); min-width: 90px; }
+  .skill-track { flex: 1; height: 6px; background: var(--border2); border-radius: 100px; overflow: hidden; }
+  .skill-fill { height: 100%; border-radius: 100px; background: var(--accent); transition: width 1s ease-out; }
+  .skill-fill.green { background: var(--accent3); }
+  .skill-fill.orange { background: var(--accent2); }
+  .skill-pct { font-size: 0.75rem; font-weight: 600; color: var(--ink); min-width: 32px; text-align: right; }
+
+  /* DNA visual */
+  .dna-helix { display: flex; gap: 6px; align-items: flex-end; height: 80px; margin-top: 1rem; }
+  .dna-col { flex: 1; border-radius: 4px 4px 0 0; }
+
+  /* Jobs */
+  .job-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 0.5px solid var(--border); }
+  .job-item:last-child { border-bottom: none; }
+  .job-logo {
+    width: 40px; height: 40px; border-radius: 10px; border: 0.5px solid var(--border);
+    background: var(--bg); display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700; color: var(--ink2); flex-shrink: 0; font-family: 'Syne', sans-serif;
+  }
+  .job-name { font-size: 0.88rem; font-weight: 500; margin-bottom: 2px; }
+  .job-detail { font-size: 0.75rem; color: var(--ink3); }
+  .job-match {
+    margin-left: auto; font-size: 0.78rem; font-weight: 600; color: var(--accent3);
+    background: rgba(76,175,125,0.1); padding: 3px 10px; border-radius: 100px; height: fit-content;
+  }
+
+  .full-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px; padding: 1.75rem; margin-bottom: 1.5rem; }
+  .action-row { display: flex; gap: 12px; margin-top: 2rem; }
+</style>
+<script src="../js/auth.js"></script>
+</head>
+<body>
+
+<nav></nav>
+
+<div class="profile-page">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+    <div>
+      <div class="section-tag">✦ Tu ADN Profesional</div>
+      <p style="font-size:0.85rem;color:var(--ink3);margin-top:4px;">Perfil generado el 19 de mayo de 2025</p>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn-secondary" style="font-size:0.85rem;padding:0.6rem 1.25rem;">Compartir perfil</button>
+      <button class="btn-primary" style="font-size:0.85rem;padding:0.6rem 1.25rem;" onclick="window.location.href='upload.html'">Actualizar CV</button>
+    </div>
+  </div>
+
+  <!-- PROFILE HERO -->
+  <div class="profile-hero animate">
+    <div class="big-avatar">MR</div>
+    <div class="profile-hero-info">
+      <h2>María Rodríguez</h2>
+      <p>Diseñadora UX/UI · Ciudad de México · mariarodriguez@correo.com</p>
+      <div class="hero-tags">
+        <span class="hero-tag-pill">Figma</span>
+        <span class="hero-tag-pill">Prototipado</span>
+        <span class="hero-tag-pill">Research</span>
+        <span class="hero-tag-pill">Design Systems</span>
+        <span class="hero-tag-pill">4 años exp.</span>
+      </div>
+    </div>
+    <div class="score-badge">
+      <div class="score-num">92</div>
+      <div class="score-label">Score de<br>empleabilidad</div>
+    </div>
+  </div>
+
+  <div class="profile-grid animate delay-1">
+    <!-- HABILIDADES -->
+    <div class="profile-card">
+      <h4>
+        <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        Mapa de habilidades
+      </h4>
+      <div class="skill-row"><span>Figma</span><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div><span class="skill-pct">95%</span></div>
+      <div class="skill-row"><span>UX Research</span><div class="skill-track"><div class="skill-fill green" style="width:88%"></div></div><span class="skill-pct">88%</span></div>
+      <div class="skill-row"><span>Prototipado</span><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div><span class="skill-pct">90%</span></div>
+      <div class="skill-row"><span>CSS / HTML</span><div class="skill-track"><div class="skill-fill orange" style="width:70%"></div></div><span class="skill-pct">70%</span></div>
+      <div class="skill-row"><span>Adobe XD</span><div class="skill-track"><div class="skill-fill" style="width:75%"></div></div><span class="skill-pct">75%</span></div>
+      <div class="skill-row"><span>Design Systems</span><div class="skill-track"><div class="skill-fill green" style="width:82%"></div></div><span class="skill-pct">82%</span></div>
+    </div>
+
+    <!-- VACANTES -->
+    <div class="profile-card">
+      <h4>
+        <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"/></svg>
+        Vacantes recomendadas
+      </h4>
+      <div class="job-item">
+        <div class="job-logo">GG</div>
+        <div><div class="job-name">UX Designer Sr.</div><div class="job-detail">Google · Remoto · $85k USD</div></div>
+        <span class="job-match">98%</span>
+      </div>
+      <div class="job-item">
+        <div class="job-logo">SP</div>
+        <div><div class="job-name">Product Designer</div><div class="job-detail">Spotify · Híbrido · $70k USD</div></div>
+        <span class="job-match">94%</span>
+      </div>
+      <div class="job-item">
+        <div class="job-logo">NF</div>
+        <div><div class="job-name">UI/UX Lead</div><div class="job-detail">Netflix · CDMX · $60k USD</div></div>
+        <span class="job-match">89%</span>
+      </div>
+      <div class="job-item">
+        <div class="job-logo">CL</div>
+        <div><div class="job-name">Design Strategist</div><div class="job-detail">Clip · CDMX · $55k USD</div></div>
+        <span class="job-match">85%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADN VISUAL -->
+  <div class="full-card animate delay-2">
+    <h4 style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:600;margin-bottom:0.5rem;">Tu ADN visual</h4>
+    <p style="font-size:0.82rem;color:var(--ink3);margin-bottom:1rem;">Representación única de tu perfil profesional generada por IA</p>
+    <div class="dna-helix">
+      <div class="dna-col" style="height:60%;background:var(--accent);opacity:0.9;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:80%;background:var(--accent2);opacity:0.85;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:50%;background:var(--accent);opacity:0.6;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:95%;background:var(--accent3);opacity:0.9;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:70%;background:var(--accent2);opacity:0.7;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:85%;background:var(--accent);opacity:0.8;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:45%;background:var(--accent3);opacity:0.6;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:75%;background:var(--accent2);opacity:0.85;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:90%;background:var(--accent);opacity:0.9;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:55%;background:var(--accent3);opacity:0.7;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:65%;background:var(--accent2);opacity:0.6;border-radius:4px 4px 0 0;"></div>
+      <div class="dna-col" style="height:100%;background:var(--accent);opacity:0.95;border-radius:4px 4px 0 0;"></div>
+    </div>
+  </div>
+
+  <div class="action-row animate delay-3">
+    <button class="btn-primary" onclick="window.location.href='dashboard.html'">Ver Dashboard</button>
+    <button class="btn-secondary">Compartir enlace</button>
+    <button class="btn-secondary" onclick="window.location.href='upload.html'">← Volver a editar</button>
+  </div>
+  <div class="full-card animate delay-3" style="margin-bottom:1.5rem;">
+    <h4 style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:8px;">
+      <svg width="18" height="18" fill="none" stroke="var(--accent)" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+      Asesor de carrera IA
+    </h4>
+    <div id="demoChatBody" style="display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;margin-bottom:12px;">
+      <div class="chat-bubble bubble-ai" style="font-size:0.85rem;">¡Hola María! Tu perfil está muy bien. Tu score de 92 es excelente. ¿En qué te puedo ayudar hoy?</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <input type="text" id="demoChatInput" placeholder="Pregunta sobre tu carrera..." style="flex:1;border:0.5px solid var(--border);border-radius:100px;padding:0.5rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.82rem;background:var(--bg);color:var(--ink);outline:none;">
+      <button onclick="sendDemoMsg()" style="width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+      </button>
+    </div>
+  </div>
+    <button class="btn-primary" onclick="window.location.href='dashboard.html'">Ver Dashboard</button>
+    <button class="btn-secondary">Compartir enlace</button>
+    <button class="btn-secondary" onclick="window.location.href='upload.html'">← Volver a editar</button>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo"><div class="logo-dot"></div>TalentDrop</div>
+    <div class="footer-text">© 2025 TalentDrop · Proyecto escolar de innovación</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Ayuda</a>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+const demoHistory = [];
+const DEMO_SYSTEM = `Eres el asesor de carrera IA de TalentDrop. Estás ayudando a María Rodríguez, diseñadora UX/UI con 4 años de experiencia en CDMX. Habilidades: Figma (95%), UX Research (88%), Prototipado (90%), CSS/HTML (70%), Adobe XD (75%), Design Systems (82%). Score de empleabilidad: 92/100. Da consejos concretos sobre carrera, mejoras de CV, entrevistas y mercado laboral UX/UI. Sé amigable y concisa. Responde en español. Máximo 2-3 oraciones.`;
+
+async function sendDemoMsg() {
+  const input = document.getElementById('demoChatInput');
+  const body = document.getElementById('demoChatBody');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+
+  const uBubble = document.createElement('div');
+  uBubble.className = 'chat-bubble bubble-user';
+  uBubble.style.fontSize = '0.85rem';
+  uBubble.textContent = msg;
+  body.appendChild(uBubble);
+
+  const typing = document.createElement('div');
+  typing.className = 'typing';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  body.appendChild(typing);
+  body.scrollTop = body.scrollHeight;
+
+  demoHistory.push({ role: 'user', content: msg });
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: DEMO_SYSTEM, messages: demoHistory })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Intenta de nuevo.';
+    demoHistory.push({ role: 'assistant', content: reply });
+    typing.remove();
+    const aBubble = document.createElement('div');
+    aBubble.className = 'chat-bubble bubble-ai';
+    aBubble.style.fontSize = '0.85rem';
+    aBubble.textContent = reply;
+    body.appendChild(aBubble);
+  } catch(e) {
+    typing.remove();
+  }
+  body.scrollTop = body.scrollHeight;
+}
+
+document.getElementById('demoChatInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendDemoMsg();
+});
+</script>
+</body>
+</html>

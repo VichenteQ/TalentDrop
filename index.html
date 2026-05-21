@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentDrop — Tu Perfil Profesional</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    TalentDrop
+  </div>
+  <div class="nav-links">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#empresas">Empresas</a>
+    <a href="#precios">Precios</a>
+  </div>
+  <button class="nav-cta" onclick="window.location.href='pages/login.html'">Iniciar sesión</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag animate"><span></span> Plataforma de empleo con IA</div>
+    <h1 class="animate delay-1">Tu carrera, <em>rediseñada</em> desde cero</h1>
+    <p class="hero-sub animate delay-2">Sube tu CV y deja que nuestra IA genere tu ADN profesional: un perfil visual único que conecta tu talento con las oportunidades correctas.</p>
+    <div class="hero-actions animate delay-3">
+      <button class="btn-primary" onclick="window.location.href='pages/datos.html'">Subir mi CV</button>
+      <button class="btn-secondary" onclick="window.location.href='pages/demo.html'">Ver demo</button>
+    </div>
+    <div class="hero-stats animate delay-4">
+      <div><div class="stat-num">12k+</div><div class="stat-label">Perfiles activos</div></div>
+      <div><div class="stat-num">340+</div><div class="stat-label">Empresas aliadas</div></div>
+      <div><div class="stat-num">94%</div><div class="stat-label">Tasa de match</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="upload-card">
+      <div class="upload-card-header">
+        <div>
+          <h3>Sube tu CV</h3>
+          <p>Analiza y genera tu perfil en segundos</p>
+        </div>
+        <span class="step-badge">Paso 1 de 3</span>
+      </div>
+      <div class="upload-body">
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('cvFile').click()">
+          <div class="upload-icon">
+            <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+          </div>
+          <h4>Arrastra tu archivo aquí</h4>
+          <p>o haz clic para seleccionar</p>
+          <div class="file-types">
+            <span class="file-type">PDF</span>
+            <span class="file-type">DOCX</span>
+            <span class="file-type">TXT</span>
+          </div>
+        </div>
+        <input type="file" id="cvFile" class="upload-input" accept=".pdf,.doc,.docx,.txt">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nombre completo</label>
+            <input type="text" class="form-input" placeholder="Ana García">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Área profesional</label>
+            <input type="text" class="form-input" placeholder="Tecnología">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Correo electrónico</label>
+          <input type="email" class="form-input" placeholder="ana@correo.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">LinkedIn (opcional)</label>
+          <input type="text" class="form-input" placeholder="linkedin.com/in/anagarcia">
+        </div>
+        <button class="submit-btn" onclick="window.location.href='pages/datos.html'">
+          Generar mi ADN profesional
+          <svg fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<div class="feature-strip">
+  <div class="feature-item"><svg fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Análisis de CV con IA</div>
+  <div class="feature-item"><svg fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Match automático con empleos</div>
+  <div class="feature-item"><svg fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Perfil visual único</div>
+  <div class="feature-item"><svg fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Red de reclutadores verificados</div>
+  <div class="feature-item"><svg fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 100% gratuito para candidatos</div>
+</div>
+
+<!-- ADN SECTION -->
+<section class="section" id="como-funciona">
+  <div class="section-header">
+    <div class="section-tag">✦ Funcionalidad estrella</div>
+    <h2>Tu ADN<br>Profesional</h2>
+    <p class="section-sub">Transformamos tu CV en una identidad visual única. Nuestro algoritmo extrae tus habilidades, experiencia y estilo de trabajo para crear un perfil que va más allá de una hoja en blanco.</p>
+  </div>
+  <div class="dna-grid">
+    <div class="dna-card featured">
+      <div class="dna-icon white">
+        <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      </div>
+      <h3>Mapa de habilidades en tiempo real</h3>
+      <p>Visualiza tus competencias como un mapa interactivo. Identifica tus puntos fuertes y las áreas de crecimiento recomendadas según el mercado actual.</p>
+      <div class="dna-visual">
+        <div class="dna-bar" style="height:75%;animation-delay:0.1s"></div>
+        <div class="dna-bar" style="height:90%;animation-delay:0.2s"></div>
+        <div class="dna-bar" style="height:60%;animation-delay:0.3s"></div>
+        <div class="dna-bar" style="height:85%;animation-delay:0.4s"></div>
+        <div class="dna-bar" style="height:40%;animation-delay:0.5s"></div>
+        <div class="dna-bar" style="height:95%;animation-delay:0.6s"></div>
+        <div class="dna-bar" style="height:55%;animation-delay:0.7s"></div>
+        <div class="dna-bar" style="height:70%;animation-delay:0.8s"></div>
+      </div>
+    </div>
+    <div class="dna-card">
+      <div class="dna-icon orange">
+        <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/></svg>
+      </div>
+      <h3>Score de empleabilidad</h3>
+      <p>Puntaje dinámico que compara tu perfil con las vacantes más buscadas.</p>
+    </div>
+    <div class="dna-card">
+      <div class="dna-icon green">
+        <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+      </div>
+      <h3>Conexiones inteligentes</h3>
+      <p>Profesionales y reclutadores con intereses compatibles al tuyo.</p>
+    </div>
+    <div class="dna-card">
+      <div class="dna-icon purple">
+        <svg fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+      </div>
+      <h3>Asesor de carrera IA</h3>
+      <p>Chat en tiempo real para recibir consejos personalizados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERFILES -->
+<section class="profiles-section">
+  <div class="section-tag orange">✦ Comunidad activa</div>
+  <h2>Perfiles destacados</h2>
+  <p class="section-sub">Así lucen los perfiles que generamos. Únicos, visuales y efectivos.</p>
+  <div class="profiles-grid">
+    <div class="profile-card" onclick="window.location.href='pages/demo.html'">
+      <div class="profile-avatar av-1">MR</div>
+      <div class="profile-name">María Rodríguez</div>
+      <div class="profile-role">Diseñadora UX/UI · 4 años exp.</div>
+      <div class="profile-skills"><span class="skill-tag">Figma</span><span class="skill-tag">Prototipado</span><span class="skill-tag">Investigación</span></div>
+      <div class="match-bar">
+        <div class="match-label"><span>Match con vacantes</span><span>92%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+      </div>
+    </div>
+    <div class="profile-card" onclick="window.location.href='pages/demo.html'">
+      <div class="profile-avatar av-2">LH</div>
+      <div class="profile-name">Luis Herrera</div>
+      <div class="profile-role">Desarrollador Full Stack · 6 años exp.</div>
+      <div class="profile-skills"><span class="skill-tag">React</span><span class="skill-tag">Node.js</span><span class="skill-tag">Python</span></div>
+      <div class="match-bar">
+        <div class="match-label"><span>Match con vacantes</span><span>88%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+      </div>
+    </div>
+    <div class="profile-card" onclick="window.location.href='pages/demo.html'">
+      <div class="profile-avatar av-3">SC</div>
+      <div class="profile-name">Sofía Castro</div>
+      <div class="profile-role">Analista de Datos · 3 años exp.</div>
+      <div class="profile-skills"><span class="skill-tag">Power BI</span><span class="skill-tag">SQL</span><span class="skill-tag">Python</span></div>
+      <div class="match-bar">
+        <div class="match-label"><span>Match con vacantes</span><span>96%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:96%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INNOVATION CHAT -->
+<section class="innovation-section">
+  <div>
+    <div class="section-tag">✦ Diferenciador clave</div>
+    <h2>Tu asesor de carrera siempre disponible</h2>
+    <p class="section-sub" style="margin-bottom:1.5rem;">A diferencia de LinkedIn o Indeed, TalentDrop incluye un asesor con inteligencia artificial que analiza tu CV, sugiere mejoras y te prepara para entrevistas.</p>
+    <ul class="check-list">
+      <li><span class="check-icon"><svg width="10" height="10" fill="none" stroke="#4CAF7D" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span><span>Sugerencias de mejora para tu CV en tiempo real</span></li>
+      <li><span class="check-icon"><svg width="10" height="10" fill="none" stroke="#4CAF7D" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span><span>Preparación para entrevistas con preguntas personalizadas</span></li>
+      <li><span class="check-icon"><svg width="10" height="10" fill="none" stroke="#4CAF7D" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span><span>Tendencias del mercado laboral en tu industria</span></li>
+    </ul>
+    <div style="margin-top:2rem;">
+      <button class="btn-primary" onclick="window.location.href='pages/datos.html'">Probar ahora</button>
+    </div>
+  </div>
+  <div class="chat-card" id="chatCard">
+    <div class="chat-header">
+      <div class="chat-avatar">TD</div>
+      <div><div class="chat-name">Asistente TalentDrop</div><div class="chat-sub" id="chatStatus">● En línea ahora</div></div>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-bubble bubble-ai">¡Hola! Soy tu asesor de carrera IA. Analicé tu perfil de <strong>María Rodríguez</strong> — diseñadora UX/UI con 4 años de experiencia. 🎉</div>
+      <div class="chat-bubble bubble-ai">Noto que puedes mejorar tu sección de logros con métricas específicas. ¿En qué te puedo ayudar hoy?</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Escribe tu pregunta..." maxlength="300">
+      <button class="chat-send" id="chatSend" onclick="sendMessage()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+      </button>
+    </div>
+  </div>
+  <style>
+    .chat-card { display: flex; flex-direction: column; background: var(--surface); border: 0.5px solid var(--border); border-radius: 24px; overflow: hidden; max-width: 400px; }
+    .chat-input-row { display: flex; gap: 8px; padding: 1rem; border-top: 0.5px solid var(--border); background: var(--bg); }
+    .chat-input { flex: 1; border: 0.5px solid var(--border); border-radius: 100px; padding: 0.55rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; background: var(--surface); color: var(--ink); outline: none; }
+    .chat-input:focus { border-color: var(--accent); }
+    .chat-send { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: opacity 0.2s; }
+    .chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+    .chat-body { max-height: 280px; overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 10px; }
+    .typing { display: flex; gap: 4px; align-items: center; padding: 0.6rem 1rem; background: var(--bg); border-radius: 16px 16px 16px 4px; width: fit-content; }
+    .typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--ink3); animation: typingDot 1.2s infinite; }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot { 0%,60%,100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
+  </style>
+  <script>
+    const SYSTEM_PROMPT = `Eres el asesor de carrera IA de TalentDrop. Estás ayudando a María Rodríguez, diseñadora UX/UI con 4 años de experiencia, con habilidades en Figma (95%), UX Research (88%), Prototipado (90%), CSS/HTML (70%), Adobe XD (75%) y Design Systems (82%). Su score de empleabilidad es 92/100. Ella está ubicada en Ciudad de México.
+
+Tu rol: dar consejos concretos y accionables sobre su carrera, mejoras a su CV, preparación para entrevistas, tendencias del mercado de diseño UX/UI, y match con vacantes. Sé amigable, conciso y profesional. Responde siempre en español. Máximo 3 oraciones por respuesta.`;
+
+    const history = [];
+
+    async function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const sendBtn = document.getElementById('chatSend');
+      const body = document.getElementById('chatBody');
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      input.value = '';
+      sendBtn.disabled = true;
+
+      // User bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble bubble-user';
+      userBubble.textContent = msg;
+      body.appendChild(userBubble);
+
+      // Typing indicator
+      const typing = document.createElement('div');
+      typing.className = 'typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      body.appendChild(typing);
+      body.scrollTop = body.scrollHeight;
+
+      history.push({ role: 'user', content: msg });
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: SYSTEM_PROMPT,
+            messages: history
+          })
+        });
+        const data = await res.json();
+        const reply = data.content?.[0]?.text || 'Hubo un error. Intenta de nuevo.';
+        history.push({ role: 'assistant', content: reply });
+
+        typing.remove();
+        const aiBubble = document.createElement('div');
+        aiBubble.className = 'chat-bubble bubble-ai';
+        aiBubble.textContent = reply;
+        body.appendChild(aiBubble);
+      } catch(e) {
+        typing.remove();
+        const errBubble = document.createElement('div');
+        errBubble.className = 'chat-bubble bubble-ai';
+        errBubble.textContent = 'Error de conexión. Verifica tu internet e intenta de nuevo.';
+        body.appendChild(errBubble);
+      }
+
+      sendBtn.disabled = false;
+      body.scrollTop = body.scrollHeight;
+    }
+
+    document.getElementById('chatInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</section>
+
+<!-- PRECIOS -->
+<section class="section" id="precios">
+  <div class="section-header">
+    <div class="section-tag">✦ Planes</div>
+    <h2>Simple y<br>transparente</h2>
+    <p class="section-sub">Empieza gratis. Sube de plan cuando estés listo para dar el siguiente paso.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-label">Gratis</div>
+      <div class="pricing-price">$0<span>/mes</span></div>
+      <p class="pricing-desc">Para explorar TalentDrop y crear tu primer perfil.</p>
+      <ul class="pricing-features">
+        <li><svg width="14" height="14" fill="none" stroke="var(--accent3)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>1 ADN Profesional</li>
+        <li><svg width="14" height="14" fill="none" stroke="var(--accent3)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Match con vacantes</li>
+        <li><svg width="14" height="14" fill="none" stroke="var(--accent3)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>5 mensajes con asesor IA</li>
+        <li><svg width="14" height="14" fill="none" stroke="var(--border2)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span style="color:var(--ink3)">Descarga PDF</span></li>
+        <li><svg width="14" height="14" fill="none" stroke="var(--border2)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span style="color:var(--ink3)">Integraciones</span></li>
+      </ul>
+      <button class="btn-secondary" style="width:100%;margin-top:auto;" onclick="window.location.href='pages/datos.html'">Comenzar gratis</button>
+    </div>
+    <div class="pricing-card featured-price">
+      <div class="pricing-badge">Más popular</div>
+      <div class="pricing-label" style="color:rgba(255,255,255,0.65)">Pro</div>
+      <div class="pricing-price" style="color:#fff">$149<span style="color:rgba(255,255,255,0.5)">/mes</span></div>
+      <p class="pricing-desc" style="color:rgba(255,255,255,0.6)">Para quienes buscan trabajo activamente.</p>
+      <ul class="pricing-features">
+        <li style="color:rgba(255,255,255,0.85)"><svg width="14" height="14" fill="none" stroke="var(--accent2)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Perfiles ilimitados</li>
+        <li style="color:rgba(255,255,255,0.85)"><svg width="14" height="14" fill="none" stroke="var(--accent2)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Match avanzado con IA</li>
+        <li style="color:rgba(255,255,255,0.85)"><svg width="14" height="14" fill="none" stroke="var(--accent2)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Chat asesor ilimitado</li>
+        <li style="color:rgba(255,255,255,0.85)"><svg width="14" height="14" fill="none" stroke="var(--accent2)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Descarga PDF profesional</li>
+        <li style="color:rgba(255,255,255,0.85)"><svg width="14" height="14" fill="none" stroke="var(--accent2)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Todas las integraciones</li>
+      </ul>
+      <button class="btn-primary" style="width:100%;margin-top:auto;background:#fff;color:var(--accent);" onclick="window.location.href='pages/datos.html'">Empezar Pro</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-label">Empresas</div>
+      <div class="pricing-price">Custom</div>
+      <p class="pricing-desc">Para equipos de RR.HH. y reclutadores.</p>
+      <ul class="pricing-features">
+        <li><svg width="14" height="14" fill="none" stroke="var(--accent3)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Panel de reclutador</li>
+        <li><svg width="14" height="14" fill="none" stroke="var(--accent3)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Búsqueda avanzada de talentos</li>
+        <li><svg width="14" height="14" fill="none" stroke="var(--accent3)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>ATS integrado</li>
+        <li><svg width="14" height="14" fill="none" stroke="var(--accent3)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Reportes y analytics</li>
+        <li><svg width="14" height="14" fill="none" stroke="var(--accent3)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Soporte prioritario</li>
+      </ul>
+      <button class="btn-secondary" style="width:100%;margin-top:auto;">Contactar ventas</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA INTEGRACIONES -->
+<section class="cta-section" id="empresas">
+  <div class="cta-left">
+    <div class="section-tag">✦ Ecosistema</div>
+    <h2>Conecta con las plataformas que ya usas</h2>
+    <p>Importa tu perfil de LinkedIn, sincroniza con GitHub o conéctate directamente con portales de empleo. Todo desde un solo lugar.</p>
+    <div class="cta-actions">
+      <button class="btn-primary" onclick="window.location.href='pages/datos.html'">Crear mi perfil gratis</button>
+      <button class="btn-secondary">Para empresas →</button>
+    </div>
+  </div>
+  <div class="integrations-grid">
+    <div class="integration-pill"><div class="dot" style="background:#0077B5"></div>LinkedIn</div>
+    <div class="integration-pill"><div class="dot" style="background:#1B1F23"></div>GitHub</div>
+    <div class="integration-pill"><div class="dot" style="background:#E44232"></div>Gmail</div>
+    <div class="integration-pill"><div class="dot" style="background:#F04E37"></div>Indeed</div>
+    <div class="integration-pill"><div class="dot" style="background:#0073B1"></div>Glassdoor</div>
+    <div class="integration-pill"><div class="dot" style="background:#8B5CF6"></div>Notion</div>
+    <div class="integration-pill"><div class="dot" style="background:#E01E5A"></div>Slack</div>
+    <div class="integration-pill"><div class="dot" style="background:#FF6900"></div>Xing</div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo"><div class="logo-dot"></div>TalentDrop</div>
+    <div class="footer-text">© 2025 TalentDrop · Proyecto escolar de innovación</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacidad</a>
+    <a href="#">Términos</a>
+    <a href="#">Ayuda</a>
+    <a href="#">Contacto</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
