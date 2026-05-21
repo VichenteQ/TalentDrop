@@ -1,14 +1,8 @@
 # TalentDrop 🎯
 
-**Plataforma de empleo con IA — Proyecto escolar de innovación**
+**Plataforma de empleo con IA**
 
-TalentDrop transforma tu CV en un **ADN Profesional**: un perfil visual único que conecta tu talento con las oportunidades correctas, apoyado por un asesor de carrera con inteligencia artificial.
-
----
-
-## 🚀 Ver demo en vivo
-
-👉 **Abre `index.html` en tu navegador o usa GitHub Pages (ver instrucciones abajo)**
+TalentDrop transforma tu CV en un **ADN Profesional**: un perfil visual único que conecta tu talento con las oportunidades correctas.
 
 ---
 
@@ -42,24 +36,6 @@ talentdrop/
 
 ---
 
-## 🤖 Chat IA — Cómo funciona
-
-El chat del asesor de carrera usa la **API de Claude (Anthropic)** directamente desde el navegador. Para que funcione localmente necesitas servir los archivos a través de un servidor HTTP (no abrirlos directamente como archivo), ya que el navegador bloquea las peticiones fetch en archivos locales (`file://`).
-
-**Opción recomendada — VS Code Live Server:**
-1. Instala la extensión "Live Server" en VS Code
-2. Click derecho en `index.html` → "Open with Live Server"
-3. El chat funcionará automáticamente
-
-**Alternativa con Python:**
-```bash
-cd talentdrop
-python -m http.server 3000
-# Abre http://localhost:3000
-```
-
----
-
 ## 🛠️ Tecnologías
 
 - HTML5 semántico
@@ -70,29 +46,9 @@ python -m http.server 3000
 
 ---
 
-## 🌐 Publicar en GitHub Pages
 
-1. Crea un repositorio en GitHub (puede ser público o privado)
-2. Sube todos los archivos:
-   ```bash
-   git init
-   git add .
-   git commit -m "TalentDrop v1.0"
-   git remote add origin https://github.com/TU-USUARIO/talentdrop.git
-   git push -u origin main
-   ```
-3. Ve a **Settings → Pages**
-4. En **Branch**, selecciona `main` y carpeta `/root`
-5. Guarda — en unos minutos tendrás tu enlace: `https://TU-USUARIO.github.io/talentdrop`
+## 👩‍🎓 Proyecto para lamateria de Competencias blandas
 
-> **Nota:** El chat IA funciona normalmente en GitHub Pages ya que los archivos se sirven por HTTP.
+Desarrollado como proyecto para la materia de Competencias Blandas de la carrera de ingeneria en sistemas computacionales.
+Desarrollada por el estudiante Vicente Martínez Pérez.
 
----
-
-## 👩‍🎓 Proyecto académico
-
-Desarrollado como proyecto escolar de innovación. Inspirado en plataformas como LinkedIn, Xing, Indeed, Viadeo y Glassdoor, con un enfoque diferenciador en la visualización del perfil profesional mediante IA.
-
----
-
-*© 2025 TalentDrop — Proyecto escolar de innovación*
